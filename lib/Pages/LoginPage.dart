@@ -80,89 +80,90 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.login,
-                      size: 100,
-                      color: Colors.blueAccent,
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'تسجيل الدخول',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'assets/login.png',
+                        width: 200,
+                        height: 200,
                       ),
-                    ),
-                    const SizedBox(height: 30),
-
-                    // حقل إدخال اسم المستخدم
-                    TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                        labelText: 'اسم المستخدم',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        filled: true,
-                        fillColor: Colors.blue.shade50,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-
-                    // حقل إدخال كلمة المرور
-                    TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: 'كلمة المرور',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        filled: true,
-                        fillColor: Colors.blue.shade50,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // اختيار الدور (دكتور أو طالب)
-                    DropdownButton<String>(
-                      value: selectedRole,
-                      items: <String>['دكتور', 'طالب'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedRole = newValue!;
-                        });
-                      },
-                      style: TextStyle(color: Colors.blueAccent),
-                      isExpanded: true,
-                    ),
-                    const SizedBox(height: 30),
-
-                    // زر تسجيل الدخول
-                    ElevatedButton(
-                      onPressed: _login,
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: Colors.blueAccent,
-                      ),
-                      child: const Text(
+                      const Text(
                         'تسجيل الدخول',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey,
+                        ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 30),
+                  
+                      // حقل إدخال اسم المستخدم
+                      TextField(
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          labelText: 'اسم المستخدم',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          filled: true,
+                          fillColor: Colors.blue.shade50,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                  
+                      // حقل إدخال كلمة المرور
+                      TextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'كلمة المرور',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          filled: true,
+                          fillColor: Colors.blue.shade50,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                  
+                      // اختيار الدور (دكتور أو طالب)
+                      DropdownButton<String>(
+                        value: selectedRole,
+                        items: <String>['دكتور', 'طالب'].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedRole = newValue!;
+                          });
+                        },
+                        style: TextStyle(color: Colors.blueAccent),
+                        isExpanded: true,
+                      ),
+                      const SizedBox(height: 30),
+                  
+                      // زر تسجيل الدخول
+                      ElevatedButton(
+                        onPressed: _login,
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: Colors.blueAccent,
+                        ),
+                        child: const Text(
+                          'تسجيل الدخول',
+                          style: TextStyle(fontSize: 18, color: Colors.white,fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

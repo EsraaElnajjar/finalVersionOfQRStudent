@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:studentqr/Pages/StudentsPage.dart';
 
 class DoctorPage extends StatefulWidget {
   @override
@@ -33,22 +34,7 @@ class _DoctorPageState extends State<DoctorPage> {
     });
   }
 
-  // لتخزين بيانات الحضور في SharedPreferences
-  Future<void> _saveAttendance(String name, String studentId) async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String> storedList = prefs.getStringList('attendance_students') ?? [];
 
-    Map<String, String> studentData = {
-      'name': name,
-      'studentId': studentId,
-    };
-
-    storedList.add(json.encode(studentData));
-    await prefs.setStringList('attendance_students', storedList);
-
-    // تحديث العرض
-    _loadAttendanceList();
-  }
 
   void generateNewQRCode() async {
     DateTime now = DateTime.now();
@@ -82,7 +68,7 @@ class _DoctorPageState extends State<DoctorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('لوحة الدكتور',style: TextStyle(color: Colors.white),),
+        title: Text('صفحة الدكتور',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.blueAccent,
       ),
       body: Container(
@@ -123,8 +109,10 @@ class _DoctorPageState extends State<DoctorPage> {
                       backgroundColor: Colors.white,
                     )
                         : const Text(
+                      textDirection: TextDirection.rtl,
+                      textAlign: TextAlign.center,
                       'مرحبا يا دكتور من فضلك اضغط على الزر لإنشاء كود جديد',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      style: TextStyle(fontSize: 18, color: Colors.grey,fontWeight: FontWeight.bold),
                     ),
 
                     const SizedBox(height: 30),
@@ -142,7 +130,7 @@ class _DoctorPageState extends State<DoctorPage> {
                         ),
                         child: const Text(
                           'إنشاء كود جديد',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: Colors.white,fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -152,7 +140,10 @@ class _DoctorPageState extends State<DoctorPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          _showAttendanceList(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => StudentsPage()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blueAccent,
@@ -162,8 +153,8 @@ class _DoctorPageState extends State<DoctorPage> {
                           ),
                         ),
                         child: const Text(
-                          'قائمة الطلاب الحاضرين',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          'الغياب فى مادة سوق العمل',
+                          style: TextStyle(fontSize: 18, color: Colors.white,fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
