@@ -1,0 +1,60 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.studentqr"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "25.1.8937393"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.studentqr"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+//subprojects {
+//    afterEvaluate { project ->
+//        if (project.hasProperty('android')) {
+//            project.android {
+//                if (namespace == null) {
+//                    namespace project.group
+//                }
+//            }
+//        }
+//        if (project.plugins.hasPlugin("com.android.application") ||
+//                project.plugins.hasPlugin("com.android.library")) {
+//            project.android {
+//                compileSdkVersion 34
+//            }
+//        }
+//    }
+//    project.buildDir = "${rootProject.buildDir}/${project.name}"
+//    project.evaluationDependsOn(':app')
+//}
+
+
